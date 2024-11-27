@@ -1,4 +1,5 @@
 
+// Initialisation des pin
 const int led_R = 8;
 const int led_V = 9;
 const int led_B = 10;
@@ -13,6 +14,7 @@ int couleur;
 
 void setup()
 {
+  // Initialiation du type de sortie des pin
   pinMode(BP_dec, INPUT);
   pinMode(BP_inc, INPUT);
   digitalWrite(BP_dec, HIGH);
@@ -22,6 +24,7 @@ void setup()
   pinMode(led_R, OUTPUT);
   pinMode(led_V, OUTPUT);
   pinMode(led_B, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop()
@@ -42,7 +45,8 @@ void loop()
     couleur--;
   }
   memoire_dec = status_bouton;
-  
+
+  // Blocage des valeur entre 0 et 10
   if(couleur > 10)
   {
     couleur = 10;
@@ -53,9 +57,11 @@ void loop()
     couleur = 0;
   }
   
+  // Chaque valeur de MLI et des couleurs
   switch(couleur) {
     case 0:
       // Vert pur
+      Serial.println("Vitesse = 0");
       analogWrite(MLI, 0);
       analogWrite(led_R, 0);
       analogWrite(led_B, 0);
@@ -64,6 +70,7 @@ void loop()
       
     case 1:
       // Transition vers cyan
+      Serial.println("Vitesse = 1");
       analogWrite(MLI, 25);
       analogWrite(led_R, 0);
       analogWrite(led_B, 64);
@@ -72,6 +79,7 @@ void loop()
       
     case 2:
       // Cyan pur
+      Serial.println("Vitesse = 2");
       analogWrite(MLI, 51);
       analogWrite(led_R, 0);
       analogWrite(led_B, 128);
@@ -80,6 +88,7 @@ void loop()
 
     case 3:
       // Transition vers bleu clair
+      Serial.println("Vitesse = 3");
       analogWrite(MLI, 76);
       analogWrite(led_R, 0);
       analogWrite(led_B, 191);
@@ -88,6 +97,7 @@ void loop()
       
     case 4:
       // Bleu pur
+      Serial.println("Vitesse = 4");
       analogWrite(MLI, 102);
       analogWrite(led_R, 0);
       analogWrite(led_B, 255);
@@ -96,6 +106,7 @@ void loop()
       
     case 5:
       // Transition vers violet
+      Serial.println("Vitesse = 5");
       analogWrite(MLI, 127);
       analogWrite(led_R, 64);
       analogWrite(led_B, 255);
@@ -104,6 +115,7 @@ void loop()
       
     case 6:
       // Violet
+      Serial.println("Vitesse = 6");
       analogWrite(MLI, 153);
       analogWrite(led_R, 128);
       analogWrite(led_B, 255);
@@ -112,6 +124,7 @@ void loop()
       
     case 7:
       // Transition vers magenta
+      Serial.println("Vitesse = 7");
       analogWrite(MLI, 178);
       analogWrite(led_R, 191);
       analogWrite(led_B, 255);
@@ -120,6 +133,7 @@ void loop()
       
     case 8:
       // Magenta pur
+      Serial.println("Vitesse = 8");
       analogWrite(MLI, 204);
       analogWrite(led_R, 255);
       analogWrite(led_B, 255);
@@ -128,6 +142,7 @@ void loop()
 
     case 9:
       // Transition vers rouge
+      Serial.println("Vitesse = 9");
       analogWrite(MLI, 229);
       analogWrite(led_R, 255);
       analogWrite(led_B, 128);
@@ -136,6 +151,7 @@ void loop()
 
     case 10:
       // Rouge pur
+      Serial.println("Vitesse = 10");
       analogWrite(MLI, 255);
       analogWrite(led_R, 255);
       analogWrite(led_B, 0);
